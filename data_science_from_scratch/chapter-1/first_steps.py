@@ -12,7 +12,6 @@ users = [
 ]
 
 # Friendships as derived from associations between user ids
-
 friendships = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4),
                (4, 5), (5, 6), (5, 7), (6, 8), (7, 8), (8, 9)]
 
@@ -37,7 +36,15 @@ print(num_friends_by_id)
 
 friends_sorted = sorted(num_friends_by_id, key=lambda (user_id, num_friends): num_friends, reverse=True)
 
+def frieds_of_friend_ids_bad(user):
+# "foaf" is short for "friend of a friend"
+    return [foaf["id"]
+        for friend in user["friends"]  # for each of user's friends
+        for foaf in friend["friends"]]  # get each of _their_ friends
+
 print(friends_sorted)
+
+
 
 
 
