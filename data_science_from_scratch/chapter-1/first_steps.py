@@ -30,21 +30,8 @@ total_connections = sum(number_of_friends(user) for user in users)
 num_users = len(users)
 avg_connections = total_connections / num_users
 
-num_friends_by_id = [(user["id"], number_of_friends(user)) for user in users]
-
-print(num_friends_by_id)
-
-friends_sorted = sorted(num_friends_by_id, key=lambda (user_id, num_friends): num_friends, reverse=True)
-
 def frieds_of_friend_ids_bad(user):
 # "foaf" is short for "friend of a friend"
     return [foaf["id"]
         for friend in user["friends"]  # for each of user's friends
         for foaf in friend["friends"]]  # get each of _their_ friends
-
-print(friends_sorted)
-
-
-
-
-
